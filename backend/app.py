@@ -4,7 +4,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__)))
 
 from flask import Flask
 from flask_cors import CORS
-from backend.routes.monitor_routes import monitor_bp
+from routes.monitor_routes import monitor_bp
 
 app = Flask(__name__)
 CORS(app)
