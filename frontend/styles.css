@@ -1,0 +1,14 @@
+body {
+  font-family: Arial, sans-serif;
+}
+.card {
+  margin-bottom: 15px;
+  border-left: 5px solid;
+}
+.card.online {
+  border-color: green;
+}
+.card.offline {
+  border-color: red;
+}
+
