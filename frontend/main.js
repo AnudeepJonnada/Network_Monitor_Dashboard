@@ -1,5 +1,5 @@
 function loadDevices() {
-  fetch('http://127.0.0.1:5000/api/status')
+  fetch('https://network-monitor-dashboard.onrender.com/api/status')
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById("devices");
@@ -29,7 +29,7 @@ document.getElementById('device-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const name = document.getElementById('name').value;
   const ip = document.getElementById('ip').value;
-  fetch('http://127.0.0.1:5000/api/add-device', {
+  fetch('https://network-monitor-dashboard.onrender.com/api/add-device', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, ip })
