@@ -2,17 +2,16 @@ import subprocess
 import json
 import os
 import time
+import socket
 
 DEVICES_PATH = os.path.join(os.path.dirname(__file__), '../database/devices.json')
 
-def ping_device(ip):
-    start = time.time()
+def ping_device(ip, port=80, timeout=2):
     try:
-        output = subprocess.check_output(["ping", "-c", "1", ip], stderr=subprocess.DEVNULL)
-        latency = round((time.time() - start) * 1000, 2)  # in milliseconds
-        return True, latency
-    except subprocess.CalledProcessError:
-        return False, None
+        with socket.create_connection((ip, port), timeout=timeout):
+            return "Online", 0  
+    except Exception:
+        return "Offline", None
 
 def check_all_devices():
     with open(DEVICES_PATH) as f:
