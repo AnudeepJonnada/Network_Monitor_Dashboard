@@ -7,9 +7,12 @@ import socket
 DEVICES_PATH = os.path.join(os.path.dirname(__file__), '../database/devices.json')
 
 def ping_device(ip, port=80, timeout=2):
+    start = time.time()
     try:
         with socket.create_connection((ip, port), timeout=timeout):
-            return "Online", 0  
+            end = time.time()
+            latency = (end - start) * 1000  # Convert to milliseconds
+            return "Online", round(latency, 2)
     except Exception:
         return "Offline", None
 
